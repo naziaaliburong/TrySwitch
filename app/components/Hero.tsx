@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-
+import Image from 'next/image';
 import StoreButtons from './StoreButtons';
 
 const Hero = () => {
@@ -29,7 +29,7 @@ const Hero = () => {
         <StoreButtons />
       </div>
       <div className='w-[50%] relative max-md:w-full'>
-        <img src={imgSrc} width={650} height={600} alt="mobile" className='absolute top-10 left-10 max-lg:left-0 w-[100%] max-md:w-[60%] max-md:ml-[20%]'/>
+        <Image src={imgSrc} width={650} height={600} alt="mobile" className='absolute top-10 left-10 max-lg:left-0 w-[100%] max-md:w-[60%] max-md:ml-[20%]'/>
       </div>
     </div>
   )
