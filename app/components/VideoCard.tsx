@@ -64,7 +64,7 @@ if(!video){
     duration: 1
   })
   }
-  },[])
+  },[rowReverse, video])
 
   return(
   <div className={`flex ${rowReverse===true && "flex-row-reverse"} pt-40 pb-20 gap-5 max-sm:flex-col`}>

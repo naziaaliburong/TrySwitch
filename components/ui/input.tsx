@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Label } from '@radix-ui/react-label'
 
 import { cn } from "@/lib/utils"
 

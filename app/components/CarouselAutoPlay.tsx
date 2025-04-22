@@ -12,7 +12,7 @@ const CarouselAutoPlay = () => {
             setCurrentIndex((prevIndex)=>(prevIndex+1) % carouselObj.length)
         }, 5000)
         return () => clearInterval(intervalRef.current)
-        },[carouselObj.length]);
+        },[]);
 
     
   return (

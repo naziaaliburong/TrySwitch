@@ -44,7 +44,7 @@ const Card = ({reverse, image}) => {
           duration: 1,
         },
       )
-  }, [])
+  }, [reverse])
 
   return (
         <div ref={cardRef} className={`bg-gray-100 h-[430px] w-80 max-lg:w-60 max-md:w-45 max-sm:w-[80%] rounded-2xl flex ${reverse===true ? "flex-col-reverse" : "flex-col"} p-5`}>
