@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Poppins } from 'next/font/google';
+import Footer from "./components/Footer";
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'], // include the weights you need
+  variable: '--font-poppins', // optional but useful for Tailwind CSS or CSS variables
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.className}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="main-content">
         {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );
