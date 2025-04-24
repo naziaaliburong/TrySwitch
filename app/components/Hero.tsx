@@ -7,22 +7,43 @@ const Hero = () => {
   const noOfFrames = 151
   const [currentFrame, setCurrentFrame] = useState(0)
   const [animationComplete, setAnimationComplete] = useState(false)
+  const [imagesLoaded, setImagesLoaded] = useState(false)
   const frameRef = useRef({ frame: 0 })
 
   useEffect(() => {
+    let loadedCount = 0
+    const preloadImages = []
+
+    for (let i = 0; i < noOfFrames; i++) {
+      const paddedIndex = i.toString().padStart(4, '0')
+      const img = new Image()
+      img.src = `/assets/images/${paddedIndex}.png`
+      img.onload = () => {
+        loadedCount++
+        if (loadedCount === noOfFrames) {
+          setImagesLoaded(true)
+        }
+      }
+      preloadImages.push(img)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!imagesLoaded) return
+
     const tl = gsap.timeline({
       onComplete: () => setAnimationComplete(true),
     })
 
     tl.to(frameRef.current, {
       frame: noOfFrames - 1,
-      duration: (noOfFrames * 40) / 1000, // 40ms per frame
+      duration: (noOfFrames * 40) / 1000,
       ease: 'none',
       onUpdate: () => {
         setCurrentFrame(Math.round(frameRef.current.frame))
       },
     })
-  }, [])
+  }, [imagesLoaded])
 
   const frameName = currentFrame.toString().padStart(4, '0')
   const imgSrc = animationComplete
@@ -38,13 +59,17 @@ const Hero = () => {
         <StoreButtons />
       </div>
       <div className='w-[50%] h-full relative max-md:w-full'>
-        <img
-          src={imgSrc}
-          width={300}
-          height={300}
-          alt='mobile'
-          className='absolute top-10 left-10 max-lg:left-0 w-full h-full max-md:w-[60%] max-md:ml-[20%]'
-        />
+        {imagesLoaded ? (
+          <img
+            src={imgSrc}
+            width={300}
+            height={300}
+            alt='mobile'
+            className='absolute top-10 left-10 max-lg:left-0 w-full h-full max-md:w-[60%] max-md:ml-[20%]'
+          />
+        ) : (
+          <div className="text-xl font-semibold p-10">Loading animation...</div>
+        )}
       </div>
     </div>
   )
