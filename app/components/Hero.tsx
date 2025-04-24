@@ -68,7 +68,13 @@ const Hero = () => {
             className='absolute top-10 left-10 max-lg:left-0 w-full h-full max-md:w-[60%] max-md:ml-[20%]'
           />
         ) : (
-          <div className="text-xl font-semibold p-10">Loading animation...</div>
+          <img
+            src='/assets/images/Tryswitch-hero.png'
+            width={300}
+            height={300}
+            alt='mobile'
+            className='absolute top-10 left-10 max-lg:left-0 w-full h-full max-md:w-[60%] max-md:ml-[20%]'
+          />
         )}
       </div>
     </div>
