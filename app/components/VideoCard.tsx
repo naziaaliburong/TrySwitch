@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect } from "react";
-import Video from "next-video";
 import Image from "next/image";
 import StoreButtons from "./StoreButtons";
 import gsap from "gsap";
@@ -9,7 +8,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VideoComponent = ({heading, para, src, rowReverse, playButton, video}) => {
+const VideoCard = ({heading, para, src, rowReverse, playButton, video}) => {
   const videoRef = useRef(null);
   const imageRef = useRef(null);
   const textDivRef = useRef(null);
@@ -71,12 +70,7 @@ if(!video){
     <div className="w-[50%] max-sm:w-full overflow-hidden">
     {video===true ? (
       <div  ref={videoRef} className="overflow-hidden">
-        <Video src={src} autoPlay loop muted controls={false} style={{
-          objectFit: 'cover',
-          width: '100%',
-          height: '100%',
-        }}
-        />
+        <video src={src} className="object-cover w-full h-full"/>
     </div>
     ):(
       <Image src={src} alt="" width={100} height={100} className="w-[100%] h-[90%]" ref={imageRef}/>
@@ -98,4 +92,4 @@ if(!video){
   )
       };
 
-export default VideoComponent;
+export default VideoCard;
